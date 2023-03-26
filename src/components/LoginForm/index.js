@@ -1,7 +1,12 @@
 // Write your JS code here
+
 import {Component} from 'react'
+
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+
+import Cookies from 'js-cookie'
+import {Redirect} from 'react-router-dom'
 
 import './index.css'
 
@@ -9,11 +14,22 @@ class LoginForm extends Component {
   state = {
     username: '',
     password: '',
+    showErrorMsg: false,
+    errorMsg: '',
   }
 
-  onSubmitSuccess = () => {
+  onSubmitSuccess = jwtToken => {
+    Cookies.set('jwt_token', jwtToken, {expires: 30})
+
     const {history} = this.props
     history.replace('/')
+  }
+
+  onsubmitFailure = errorMsg => {
+    this.setState({
+      showErrorMsg: true,
+      errorMsg,
+    })
   }
 
   onChangeUsername = e => {
@@ -39,11 +55,18 @@ class LoginForm extends Component {
     console.log(data)
     console.log(response)
     if (response.ok === true) {
-      this.onSubmitSuccess()
+      this.onSubmitSuccess(data.jwt_token)
+    } else {
+      this.onsubmitFailure(data.error_msg)
     }
   }
 
   render() {
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken !== undefined) {
+      return <Redirect to="/" />
+    }
+    const {showErrorMsg, errorMsg} = this.state
     return (
       <div className="container" style={{height: '100vh', display: 'flex'}}>
         <div className="row">
@@ -90,6 +113,7 @@ class LoginForm extends Component {
                 <Button variant="primary" style={{width: '100%'}} type="submit">
                   Login
                 </Button>
+                {showErrorMsg && <p className="text-danger">*{errorMsg}</p>}
               </Form>
             </div>
           </div>
