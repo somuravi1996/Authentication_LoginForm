@@ -45,9 +45,9 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{height: '100vh', display: 'flex'}}>
         <div className="row">
-          <div className="col-12 col-sm-12 col-md-7 d-flex justify-content-md-center align-items-center vh-100">
+          <div className="col-12 col-sm-12 col-md-7 d-flex justify-content-md-center align-items-center">
             <div>
               <img
                 className="img-fluid mb-3"
@@ -56,7 +56,7 @@ class LoginForm extends Component {
               />
             </div>
           </div>
-          <div className="col-12 col-sm-12 col-md-5 col-lg-4 d-flex  justify-content-md-center align-items-center vh-100 ">
+          <div className="col-12 col-sm-12 col-md-5 col-lg-4 d-flex  justify-content-md-center align-items-center">
             <div
               className="bg-light shadow p-5 mb-5 bg-body rounded-4"
               style={{width: '100%'}}
