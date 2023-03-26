@@ -1,0 +1,42 @@
+/* Write your CSS code here */
+.website-logo {
+  width: 180px;
+  height: auto;
+}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-items {
+  align-items: center;
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
+}
+
+ul li {
+  text-decoration: none;
+  list-style: none;
+}
+.nav-link {
+  text-decoration: none;
+}
+
+@media (max-width: 576px) {
+  .nav-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+  }
+  .nav-items {
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+  .container {
+    text-align: center;
+  }
+  p {
+    text-align: justify;
+  }
+}
